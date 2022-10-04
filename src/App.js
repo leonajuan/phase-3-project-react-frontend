@@ -1,58 +1,62 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import { useEffect } from "react";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
+import { useEffect, useState } from "react";
 import './App.css';
 import Header from './components/Header'
 import NewReviewForm from './components/NewReviewForm'
+import LocationsList from './components/LocationsList'
 
 function App() {
+
+  const [locations, setLocations] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
+      .then(locationsData => {
+        setLocations(locationsData)
       })
   }, [])
 
   return (
     <>
-      <Router>
-        <Header />
-        <div>
+      {/* <Router> */}
+      <Header />
+      <LocationsList locations={locations} />
+      {/* <div>
           <nav>
             <ul>
               <li>
                 <Link to="/">Locations</Link>
               </li>
               <li>
-                <Link to="/about">Reviews</Link>
+                <Link to="/reviews">Reviews</Link>
               </li>
               <li>
                 <Link to="/users">Users</Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
 
-          {/* A <Switch> looks through its children <Route>s and
+      {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-          <Switch>
+      {/* <Switch>
             <Route path="/locations">
-              {/* <About /> */}
+              <LocationsList locations={locations} />
             </Route>
             <Route path="/reviews">
               {/* <Users /> */}
-            </Route>
-            <Route path="/users">
-              {/* <Home /> */}
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+      {/* </Route>
+            <Route path="/users"> */}
+      {/* <Home /> */}
+      {/* </Route> */}
+      {/* </Switch> */}
+      {/* </div> */}
+      {/* </Router> */}
 
       <NewReviewForm />
     </>
