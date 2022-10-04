@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import './App.css';
+import Header from './components/Header'
+import NewReviewForm from './components/NewReviewForm'
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
 
   return (
     <div>
+      <Header />
+      <NewReviewForm />
     </div>
   );
 }
