@@ -1,9 +1,9 @@
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css';
 import Header from './components/Header';
@@ -33,16 +33,15 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
-      <Header />
-      <LoginForm users={users} />
-      <LocationsList locations={locations} />
-      {/* <LocationsList /> */}
-      {/* <div>
+      <Router>
+        <Header />
+        <LoginForm users={users} />
+
+        <div>
           <nav>
             <ul>
               <li>
-                <Link to="/">Locations</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/reviews">Reviews</Link>
@@ -51,23 +50,19 @@ function App() {
                 <Link to="/users">Users</Link>
               </li>
             </ul>
-          </nav> */}
+          </nav>
+          <LocationsList locations={locations} />
 
-      {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-      {/* <Switch>
-            <Route path="/locations">
-              <LocationsList locations={locations} />
+          <Switch>
+            <Route path="/">
             </Route>
             <Route path="/reviews">
-              {/* <Users /> */}
-      {/* </Route>
-            <Route path="/users"> */}
-      {/* <Home /> */}
-      {/* </Route> */}
-      {/* </Switch> */}
-      {/* </div> */}
-      {/* </Router> */}
+            </Route>
+            <Route path="/users">
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }

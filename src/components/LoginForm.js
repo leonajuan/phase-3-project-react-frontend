@@ -7,7 +7,7 @@ function LoginForm({ users }) {
   // login is incorrect - currently letting anyone login
   function handleSubmit(e) {
     e.preventDefault()
-    if (individualUsers.id === individualUsers.id && individualUsers.password === individualUsers.password) {
+    if (individualUsers.username === individualUsers.username && individualUsers.password === individualUsers.password) {
       alert("you can log in!")
     } else {
       alert("wrong information!")
