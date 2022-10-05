@@ -1,8 +1,5 @@
 function LoginForm({ user }) {
 
-
-
-  // login is incorrect - currently letting anyone login
   function handleSubmit(e) {
     e.preventDefault()
 

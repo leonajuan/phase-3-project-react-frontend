@@ -6,8 +6,7 @@ function Locations({ location, user }) {
   const { location_name, address, image_Url, category, id } = location
 
   function handleClick(e) {
-    console.log(e.target)
-    alert(`location id is ${id} and user id is ${user.id}`)
+    // alert(`location id is ${id} and user id is ${user.id}`)
     const { value: text } = Swal.fire({
       input: 'textarea',
       inputLabel: `Add A Review for ${location_name}`,
@@ -21,6 +20,23 @@ function Locations({ location, user }) {
     if (text) {
       Swal.fire(text)
     }
+    console.log(id)
+    // fetch("http://localhost:9292/reviews", {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     id: reviews.length + 1,
+    //     user_id: user.id,
+    //     location_id: location.id,
+    //     description: description
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(newReview => {
+    //     console.log(newReview)
+    //   })
   }
 
   return (
