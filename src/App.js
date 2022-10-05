@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
+import LoginForm from './components/LoginForm'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
     <>
       {/* <Router> */}
       <Header />
+      <LoginForm />
       <LocationsList locations={locations} />
       {/* <LocationsList /> */}
       {/* <div>
