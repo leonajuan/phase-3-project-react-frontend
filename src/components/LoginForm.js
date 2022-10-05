@@ -1,17 +1,11 @@
-function LoginForm({ users }) {
+function LoginForm({ user }) {
 
-  const individualUsers = users.map(user => {
-    console.log(user)
-  })
+
 
   // login is incorrect - currently letting anyone login
   function handleSubmit(e) {
     e.preventDefault()
-    if (individualUsers.username === individualUsers.username && individualUsers.password === individualUsers.password) {
-      alert("you can log in!")
-    } else {
-      alert("wrong information!")
-    }
+
   }
 
   return (

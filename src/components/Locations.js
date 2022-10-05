@@ -1,9 +1,10 @@
-function Locations({ location }) {
+function Locations({ location, user }) {
 
-  const { location_name, address, image_Url, category } = location
+  const { location_name, address, image_Url, category, id } = location
 
   function handleClick(e) {
     console.log(e.target)
+    alert(`location id is ${id} and user id is ${user.id}`)
     // logic needed to make sure we are targeting the exact location
   }
 
