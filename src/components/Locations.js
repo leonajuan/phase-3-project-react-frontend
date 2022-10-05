@@ -10,7 +10,7 @@ function Locations({ location, user }) {
     alert(`location id is ${id} and user id is ${user.id}`)
     const { value: text } = Swal.fire({
       input: 'textarea',
-      inputLabel: 'Add A Review',
+      inputLabel: `Add A Review for ${location_name}`,
       inputPlaceholder: 'Type your review here...',
       inputAttributes: {
         'aria-label': 'Type your message here'
