@@ -2,7 +2,7 @@ function Header() {
   return (
     <div>
       <h1>
-        PROJECT TITLE TBD
+        Rendez Re-vous
       </h1>
     </div>
   )
