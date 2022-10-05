@@ -6,8 +6,7 @@
 // } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css';
-import Header from './components/Header'
-import NewReviewForm from './components/NewReviewForm'
+import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 
 function App() {
@@ -27,6 +26,7 @@ function App() {
       {/* <Router> */}
       <Header />
       <LocationsList locations={locations} />
+      {/* <LocationsList /> */}
       {/* <div>
           <nav>
             <ul>
@@ -57,8 +57,6 @@ function App() {
       {/* </Switch> */}
       {/* </div> */}
       {/* </Router> */}
-
-      <NewReviewForm />
     </>
   );
 }
