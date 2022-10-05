@@ -3,10 +3,10 @@
 import Locations from './Locations'
 
 // function LocationsList({ locations }) {
-function LocationsList({ locations }) {
+function LocationsList({ locations, user }) {
 
   const locationComponents = locations.map(location => {
-    return <Locations key={location.id} location={location} />
+    return <Locations user={user} key={location.id} location={location} />
   })
 
   return (
