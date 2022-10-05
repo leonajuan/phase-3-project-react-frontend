@@ -13,6 +13,7 @@ import LoginForm from './components/LoginForm'
 function App() {
 
   const [locations, setLocations] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -22,11 +23,19 @@ function App() {
       })
   }, [])
 
+  useEffect(() => {
+    fetch("http://localhost:9292/users")
+      .then(res => res.json())
+      .then(usersData => {
+        setUsers(usersData)
+      })
+  }, [])
+
   return (
     <>
       {/* <Router> */}
       <Header />
-      <LoginForm />
+      <LoginForm users={users} />
       <LocationsList locations={locations} />
       {/* <LocationsList /> */}
       {/* <div>

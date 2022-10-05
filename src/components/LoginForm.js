@@ -1,28 +1,26 @@
-import { useEffect } from "react";
+function LoginForm({ users }) {
 
-function LoginForm() {
+  const individualUsers = users.map(user => {
+    console.log(user)
+  })
 
-  useEffect(() => {
-    fetch("http://localhost:9292/users")
-      .then(res => res.json())
-      .then(usersData => {
-        usersData.map(user => {
-          console.log(user)
-        })
-      })
-  }, [])
-
+  // login is incorrect - currently letting anyone login
   function handleSubmit(e) {
     e.preventDefault()
+    if (individualUsers.id === individualUsers.id && individualUsers.password === individualUsers.password) {
+      alert("you can log in!")
+    } else {
+      alert("wrong information!")
+    }
   }
 
   return (
     <div className="login-form">
       <h2>Log In</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" name="name" label="Username" placeholder="Username" />
         <input type="text" name="name" label="Password" placeholder="Password" />
-        <button onSubmit={handleSubmit}>Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   )
