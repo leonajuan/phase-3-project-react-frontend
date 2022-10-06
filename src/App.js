@@ -1,24 +1,77 @@
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { useEffect, useState } from "react";
 import './App.css';
+import Header from './components/Header';
+import LocationsList from './components/LocationsList'
+import LoginForm from './components/LoginForm'
+import ReviewsList from './components/ReviewsList'
+
 
 function App() {
+
+  const [locations, setLocations] = useState([])
+  const [user, setUser] = useState({
+    id: 1
+  })
+  const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/locations")
+      .then(res => res.json())
+      .then(locationsData => {
+        setLocations(locationsData)
+      })
+  }, [])
+
+
+  useEffect(() => {
+    fetch("http://localhost:9292/reviews")
+      .then(res => res.json())
+      .then(reviewsData => {
+        setReviews(reviewsData)
+      })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header />
+        <LoginForm user={user} />
+
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/reviews">Reviews</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+            </ul>
+          </nav>
+          <LocationsList user={user} locations={locations} />
+
+          <Switch>
+            <Route exact path="/">
+            <LocationsList locations={locations} />
+            </Route>
+            <Route exact path="/reviews">
+              <ReviewsList reviews={reviews} locations={locations}/>
+            </Route>
+            <Route exact path="/users">
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
 }
 
