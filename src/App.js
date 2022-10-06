@@ -50,6 +50,8 @@ function App() {
       })
   }, [])
 
+  
+  
 
   return (
     <>
@@ -71,7 +73,7 @@ function App() {
               </li>
             </ul>
           </nav>
-          <LocationsList user={user} reviews={reviews} locations={locations} />
+          <LocationsList user={user}  reviews={reviews} locations={locations} />
           <ReviewItem />
 
           <Switch>

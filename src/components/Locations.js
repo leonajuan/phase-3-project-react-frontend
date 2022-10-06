@@ -48,13 +48,6 @@ function Locations({ locations, reviews, location, user }) {
   }
 
 
-  function handleDelete(e) {
-      e.target.remove()
-    console.log(id)
-    fetch(`http://localhost:9292/reviews/6`, {
-      method: 'DELETE',
-    })
-  }
 console.log(reviews)
   const filteredReviews = reviews.filter(review =>{
 
@@ -72,20 +65,45 @@ console.log(reviews)
       return r.description
     })
   })
-  // console.log(allReviewsForLocations)
-  //  console.log(desc)
 
+  const idOfReview = allReviewsForLocations.map(review => {
+    return review.map(r => {
+      return r.id
+    })
+  })
+
+  let arrayCount=1
+
+  function handleDelete(e, id) {
+    
+    // e.target.setAttribute("data-att", arrayCount++)
+    console.log(e.target.getAttribute("data-att"))
+    // console.log(id)
+    // e.target.remove()
+    console.log(id[e.target.getAttribute("data-att")-1])
+    
+    e.target.remove()
+    // else 
+    // arrayCount = 0
+    fetch(`http://localhost:9292/reviews/${id[e.target.getAttribute("data-att")-1]}`, {
+      method: 'DELETE',
+    })
+    // .then(res => res.json())
+    // .then(reviews => setReviews(reviews))
+  }
+
+  console.log(idOfReview)
   return (
     <li className="card">
       <h2 className="name">{location_name}</h2>
-
+  
       <img onClick={()=>setText(!text)}src={image_Url} alt={location_name} />
-      <h3 className="address"> {text ? "Located at:" + address : desc[id-1].map(d=><div onClick={(e)=>handleDelete(e)}>{d+"\n"}</div>)}</h3>
+      <h3 className="address"> {text ? "Located at:" + address : desc[id-1].map(d=><div data-att={arrayCount++} onClick={(e)=>handleDelete(e, idOfReview[id-1])}>{d+"\n"}</div>)}</h3>
 
       <h4 className="category">{text ? "Category: " + category : ""}</h4>
       <button onClick={handleClick}>Add Review</button>
     </li>
   )
-}
+  }
 
 export default Locations;
