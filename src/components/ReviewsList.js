@@ -1,25 +1,26 @@
 import ReviewItem from "./ReviewItem";
 import {useState} from 'react'
 
-function ReviewsList({reviews, locations}) {
-  
+function ReviewsList({ reviews, locations }) {
+
   // const filteredReviews = reviews.filter(review => {
   //   return review.location_id === 1 
   // }) 
   // console.log(reviews)
   // console.log(filteredReviews)
 
-  const [re, setRe] = useState([])
 
 
-  const filteredReviews = reviews.filter(review =>{
+
+
+  const filteredReviews = reviews.filter(review => {
     return review !== undefined
   })
 
   const allReviewsForLocations = locations.map(location => {
-      return filteredReviews.filter(review => {
-        return review.location_id === location.id
-      })    
+    return filteredReviews.filter(review => {
+      return review.location_id === location.id
+    })
   })
 
   const desc = allReviewsForLocations.map(review => {
@@ -27,20 +28,20 @@ function ReviewsList({reviews, locations}) {
       return r.description
     })
   })
-  console.log(allReviewsForLocations)
-  console.log(desc)
+  // console.log(allReviewsForLocations)
+  // console.log(desc)
   // const locationReviews = allReviewsForLocations.map(reviewArray => {
   //   if(reviewArray.length >= 1)
   //     return reviewArray.map(review => {
   //       console.log(review)
   //       return reviewArray
-        
+
   //     })
   // })
 
   // const notZero = locationReviews.filter(locationReview =>{
   //   return locationReview !== undefined
-    
+
   // })
 
   // const pleaseWork = notZero.map(r => {
@@ -48,21 +49,21 @@ function ReviewsList({reviews, locations}) {
   //     return re.description 
   //   })
   // })
-    const test = locations.map(location => {
-      return (
+  const test = locations.map(location => {
+    return (
       <li className="card">
-      <h2 className="name">{location.location_name}</h2>
-      <img src={location.image_Url} alt={location.location_name} />
-      <h3 className="address">Located at: {location.address}</h3>
-      <h4 className="category">Category: {location.category}</h4>
-      <h4 className="review">Reviews: {desc[location.id-1]}</h4>
-      {/* <button onClick={handleClick}>Add Review</button> */}
+        <h2 className="name">{location.location_name}</h2>
+        <img src={location.image_Url} alt={location.location_name} />
+        <h3 className="address">Located at: {location.address}</h3>
+        <h4 className="category">Category: {location.category}</h4>
+        <h4 className="review">Reviews: {desc[location.id - 1]}</h4>
+        {/* <button onClick={handleClick}>Add Review</button> */}
       </li>
-      )
-    })
-      
-  
-  
+    )
+  })
+
+
+
   // console.log(locationReviews)
   // console.log(notZero)
   // console.log(pleaseWork)
@@ -73,7 +74,7 @@ function ReviewsList({reviews, locations}) {
   return (
     <main className="cards">
       {test}
-    </main>    
+    </main>
   )
 }
 
