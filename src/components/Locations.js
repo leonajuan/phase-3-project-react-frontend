@@ -1,9 +1,11 @@
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import {useState} from 'react'
+// import withReactContent from 'sweetalert2-react-content'
 
-function Locations({ location, user }) {
+function Locations({ locations, reviews, location, user }) {
 
   const { location_name, address, image_Url, category, id } = location
+  const [text, setText] = useState(true)
 
   function handleClick(e) {
     console.log(e.target)
@@ -22,13 +24,31 @@ function Locations({ location, user }) {
       Swal.fire(text)
     }
   }
+console.log(reviews)
+  const filteredReviews = reviews.filter(review =>{
+    return review !== undefined
+  })
+
+  const allReviewsForLocations = locations.map(location => {
+      return filteredReviews.filter(review => {
+        return review.location_id === location.id
+      })    
+  })
+
+  const desc = allReviewsForLocations.map(review => {
+    return review.map(r => {
+      return r.description
+    })
+  })
+  console.log(allReviewsForLocations)
+  console.log(desc)
 
   return (
     <li className="card">
       <h2 className="name">{location_name}</h2>
-      <img src={image_Url} alt={location_name} />
-      <h3 className="address">Located at: {address}</h3>
-      <h4 className="category">Category: {category}</h4>
+      <img onClick={()=>setText(!text)}src={image_Url} alt={location_name} />
+      <h3 className="address"> {text ? "Located at:" + address : desc[id-1]}</h3>
+      <h4 className="category">{text ? "Category: " + category : ""}</h4>
       <button onClick={handleClick}>Add Review</button>
     </li>
   )
