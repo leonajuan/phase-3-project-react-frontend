@@ -11,10 +11,13 @@ import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
 import ReviewsList from './components/ReviewsList'
 
+
 function App() {
 
   const [locations, setLocations] = useState([])
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState({
+    id: 1
+  })
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -25,13 +28,6 @@ function App() {
       })
   }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:9292/users")
-      .then(res => res.json())
-      .then(usersData => {
-        setUsers(usersData)
-      })
-  }, [])
 
   useEffect(() => {
     fetch("http://localhost:9292/reviews")
@@ -45,7 +41,8 @@ function App() {
     <>
       <Router>
         <Header />
-        <LoginForm users={users} />
+        <LoginForm user={user} />
+
         <div>
           <nav>
             <ul>
@@ -60,7 +57,7 @@ function App() {
               </li>
             </ul>
           </nav>
-          
+          <LocationsList user={user} locations={locations} />
 
           <Switch>
             <Route exact path="/">

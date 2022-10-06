@@ -1,10 +1,26 @@
-function Locations({ location }) {
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-  const { location_name, address, image_Url, category } = location
+function Locations({ location, user }) {
+
+  const { location_name, address, image_Url, category, id } = location
 
   function handleClick(e) {
     console.log(e.target)
-    // logic needed to make sure we are targeting the exact location
+    alert(`location id is ${id} and user id is ${user.id}`)
+    const { value: text } = Swal.fire({
+      input: 'textarea',
+      inputLabel: `Add A Review for ${location_name}`,
+      inputPlaceholder: 'Type your review here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      showCancelButton: true
+    })
+
+    if (text) {
+      Swal.fire(text)
+    }
   }
 
   return (
