@@ -57,11 +57,11 @@ function App() {
               </li>
             </ul>
           </nav>
-          <LocationsList user={user} locations={locations} />
+          <LocationsList user={user} reviews={reviews} locations={locations} />
 
           <Switch>
             <Route exact path="/">
-            <LocationsList locations={locations} />
+            {/* <LocationsList locations={locations} reviews={reviews}/> */}
             </Route>
             <Route exact path="/reviews">
               <ReviewsList reviews={reviews} locations={locations}/>
