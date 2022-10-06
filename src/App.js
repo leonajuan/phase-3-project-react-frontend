@@ -16,10 +16,14 @@ import ReviewItem from './components/ReviewItem'
 function App() {
 
   const [locations, setLocations] = useState([])
-  const [user, setUser] = useState({
-    id: 1
-  })
+  const [user, setUser] = useState([]
+    // {id: 1}
+  )
   const [reviews, setReviews] = useState([])
+  // const [filteredReviews, setFilteredReviews] =
+
+  const [userId, setUserId] = useState(0)
+  function setId(id) { setUserId(id) }
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -38,11 +42,20 @@ function App() {
       })
   }, [])
 
+  useEffect(() => {
+    fetch("http://localhost:9292/users")
+      .then(res => res.json())
+      .then(usersData => {
+        setUser(usersData)
+      })
+  }, [])
+
+
   return (
     <>
       <Router>
         <Header />
-        <LoginForm user={user} />
+        <LoginForm user={user} userId={userId} setId={setId} />
 
         <div>
           <nav>
