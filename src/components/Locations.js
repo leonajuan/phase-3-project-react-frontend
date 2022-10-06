@@ -106,7 +106,7 @@ function Locations({ locations, reviews, location, user }) {
       <img onClick={() => setShowReviews(!showReviews)} src={image_Url} alt={location_name} />
 
       {showReviews ?
-        <ReviewItems />
+        <ReviewItems id={id} />
         :
         <>
           <h4 className="category">category</h4>
