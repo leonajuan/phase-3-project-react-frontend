@@ -46,8 +46,18 @@ function Locations({ locations, reviews, location, user }) {
     // console.log(id)
     // 
   }
-  console.log(reviews)
-  const filteredReviews = reviews.filter(review => {
+
+
+  function handleDelete(e) {
+      e.target.remove()
+    console.log(id)
+    fetch(`http://localhost:9292/reviews/6`, {
+      method: 'DELETE',
+    })
+  }
+console.log(reviews)
+  const filteredReviews = reviews.filter(review =>{
+
     return review !== undefined
   })
 
@@ -68,8 +78,10 @@ function Locations({ locations, reviews, location, user }) {
   return (
     <li className="card">
       <h2 className="name">{location_name}</h2>
-      <img onClick={() => setText(!text)} src={image_Url} alt={location_name} />
-      <h3 className="address"> {text ? "Located at:" + address : desc[id - 1]}</h3>
+
+      <img onClick={()=>setText(!text)}src={image_Url} alt={location_name} />
+      <h3 className="address"> {text ? "Located at:" + address : desc[id-1].map(d=><div onClick={(e)=>handleDelete(e)}>{d+"\n"}</div>)}</h3>
+
       <h4 className="category">{text ? "Category: " + category : ""}</h4>
       <button onClick={handleClick}>Add Review</button>
     </li>

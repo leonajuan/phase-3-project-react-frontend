@@ -1,4 +1,5 @@
-
+import ReviewItem from "./ReviewItem";
+import {useState} from 'react'
 
 function ReviewsList({ reviews, locations }) {
 
@@ -7,6 +8,7 @@ function ReviewsList({ reviews, locations }) {
   // }) 
   // console.log(reviews)
   // console.log(filteredReviews)
+
 
 
 
