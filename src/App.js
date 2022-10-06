@@ -9,6 +9,7 @@ import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
+import ReviewsList from './components/ReviewsList'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [user, setUser] = useState({
     id: 1
   })
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -26,6 +28,14 @@ function App() {
       })
   }, [])
 
+
+  useEffect(() => {
+    fetch("http://localhost:9292/reviews")
+      .then(res => res.json())
+      .then(reviewsData => {
+        setReviews(reviewsData)
+      })
+  }, [])
 
   return (
     <>
@@ -47,14 +57,16 @@ function App() {
               </li>
             </ul>
           </nav>
-          <LocationsList user={user} locations={locations} />
+          <LocationsList user={user} reviews={reviews} locations={locations} />
 
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
+            {/* <LocationsList locations={locations} reviews={reviews}/> */}
             </Route>
-            <Route path="/reviews">
+            <Route exact path="/reviews">
+              <ReviewsList reviews={reviews} locations={locations}/>
             </Route>
-            <Route path="/users">
+            <Route exact path="/users">
             </Route>
           </Switch>
         </div>
