@@ -10,6 +10,7 @@ import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
 import ReviewsList from './components/ReviewsList'
+import ReviewItem from './components/ReviewItem'
 
 
 function App() {
@@ -58,13 +59,14 @@ function App() {
             </ul>
           </nav>
           <LocationsList user={user} reviews={reviews} locations={locations} />
+          <ReviewItem />
 
           <Switch>
             <Route exact path="/">
-            {/* <LocationsList locations={locations} reviews={reviews}/> */}
+              {/* <LocationsList locations={locations} reviews={reviews}/> */}
             </Route>
             <Route exact path="/reviews">
-              <ReviewsList reviews={reviews} locations={locations}/>
+              <ReviewsList reviews={reviews} locations={locations} />
             </Route>
             <Route exact path="/users">
             </Route>

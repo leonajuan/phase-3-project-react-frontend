@@ -1,8 +1,14 @@
 function LoginForm({ user }) {
 
+  const { username, password, id } = user
+
   function handleSubmit(e) {
     e.preventDefault()
-
+    if (user.filter(u => username === u.username && password === u.password)) {
+      alert("login!")
+    } else {
+      alert("can't login!")
+    }
   }
 
   return (
