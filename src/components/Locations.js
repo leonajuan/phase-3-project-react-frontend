@@ -1,11 +1,12 @@
 import Swal from 'sweetalert2'
 import { useState } from 'react'
+import ReviewItems from '../components/ReviewItems.js'
 // import withReactContent from 'sweetalert2-react-content'
 
 function Locations({ locations, reviews, location, user }) {
 
   const { location_name, address, image_Url, category, id } = location
-  const [text, setText] = useState(true)
+  const [showReviews, setShowReviews] = useState(false)
 
   function handleClick(e) {
     // alert(`location id is ${id} and user id is ${user.id}`)
@@ -33,9 +34,6 @@ function Locations({ locations, reviews, location, user }) {
           .then(newReview => {
             console.log(newReview)
           })
-        // console.log(text, user.id, id);
-        // make post with above values
-        //  to /reviews POST
       },
       showCancelButton: true
     })
@@ -43,34 +41,85 @@ function Locations({ locations, reviews, location, user }) {
     if (text) {
       Swal.fire(text)
     }
-    // console.log(id)
-    // 
   }
-  console.log(reviews)
-  const filteredReviews = reviews.filter(review => {
-    return review !== undefined
-  })
 
-  const allReviewsForLocations = locations.map(location => {
-    return filteredReviews.filter(review => {
-      return review.location_id === location.id
+  function editReview(e) {
+    console.log(id)
+    const { value: text } = Swal.fire({
+      input: 'textarea',
+      inputLabel: `Edit Review for ${location_name}`,
+      inputPlaceholder: 'Edit your review here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      preConfirm: (text) => {
+        fetch(`http://localhost:9292/reviews${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: reviews.id,
+            user_id: user.id,
+            location_id: location.id,
+            description: text
+          }),
+        })
+          .then(res => res.json())
+          .then(updatedReview => {
+            console.log(updatedReview)
+          })
+      },
+      showCancelButton: true
     })
-  })
+    if (text) {
+      Swal.fire(text)
+    }
+  }
+  // fetch(`http://localhost:9292/reviews/${id}`, {
+  //   method: 'PATCH',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify()
+  // })
+  //   .then(res => res.json())
+  //   .then(review => console.log(review))
+  // }
 
-  const desc = allReviewsForLocations.map(review => {
-    return review.map(r => {
-      return r.description
+  function handleDelete(e) {
+    e.target.remove()
+    // console.log(id)
+    fetch(`http://localhost:9292/reviews/6`, {
+      method: 'DELETE',
     })
-  })
+  }
+
+
   // console.log(allReviewsForLocations)
   //  console.log(desc)
 
   return (
     <li className="card">
       <h2 className="name">{location_name}</h2>
-      <img onClick={() => setText(!text)} src={image_Url} alt={location_name} />
-      <h3 className="address"> {text ? "Located at:" + address : desc[id - 1]}</h3>
-      <h4 className="category">{text ? "Category: " + category : ""}</h4>
+
+      <img onClick={() => setShowReviews(!showReviews)} src={image_Url} alt={location_name} />
+
+      {showReviews ?
+        <ReviewItems id={id} />
+        :
+        <>
+          <h4 className="category">category</h4>
+          <h3 className="address"> address </h3>
+        </>
+
+      }
+
+
+
+
+      <button onClick={(e) => handleDelete(e.currentTarget)}>X</button>
+
       <button onClick={handleClick}>Add Review</button>
     </li>
   )

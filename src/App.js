@@ -9,17 +9,20 @@ import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
-import ReviewsList from './components/ReviewsList'
-import ReviewItem from './components/ReviewItem'
+
 
 
 function App() {
 
   const [locations, setLocations] = useState([])
-  const [user, setUser] = useState({
-    id: 1
-  })
+  const [user, setUser] = useState([]
+    // { id: 1 }
+  )
   const [reviews, setReviews] = useState([])
+  // const [filteredReviews, setFilteredReviews] =
+
+  const [userId, setUserId] = useState(0)
+  function setId(id) { setUserId(id) }
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -31,18 +34,19 @@ function App() {
 
 
   useEffect(() => {
-    fetch("http://localhost:9292/reviews")
+    fetch("http://localhost:9292/users")
       .then(res => res.json())
-      .then(reviewsData => {
-        setReviews(reviewsData)
+      .then(usersData => {
+        setUser(usersData)
       })
   }, [])
+
 
   return (
     <>
       <Router>
         <Header />
-        <LoginForm user={user} />
+        <LoginForm user={user} userId={userId} setId={setId} />
 
         <div>
           <nav>
@@ -59,14 +63,10 @@ function App() {
             </ul>
           </nav>
           <LocationsList user={user} reviews={reviews} locations={locations} />
-          <ReviewItem />
 
           <Switch>
             <Route exact path="/">
               {/* <LocationsList locations={locations} reviews={reviews}/> */}
-            </Route>
-            <Route exact path="/reviews">
-              <ReviewsList reviews={reviews} locations={locations} />
             </Route>
             <Route exact path="/users">
             </Route>
