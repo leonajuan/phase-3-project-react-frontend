@@ -5,7 +5,7 @@ function LoginForm({ user, userId, setId }) {
   const [login, setLogin] = useState(false)
 
   // const { username, password, id } = user
-  console.log(user)
+  //  console.log(user)
   function handleSubmit(e) {
     e.preventDefault()
     const name = e.target["name"].value

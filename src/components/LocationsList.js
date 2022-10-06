@@ -4,9 +4,9 @@ import Locations from './Locations'
 
 // function LocationsList({ locations }) {
 function LocationsList({ locations, user, reviews }) {
-console.log(reviews)
+  // console.log(reviews)
   const locationComponents = locations.map(location => {
-    return <Locations user={user} key={location.id} location={location} locations={locations} reviews={reviews}/>
+    return <Locations user={user} key={location.id} location={location} locations={locations} reviews={reviews} />
   })
 
   return (

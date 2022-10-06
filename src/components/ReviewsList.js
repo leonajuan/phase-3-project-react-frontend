@@ -1,5 +1,5 @@
-import ReviewItem from "./ReviewItem";
-import {useState} from 'react'
+// import ReviewItem from "./ReviewItem";
+// import {useState} from 'react'
 
 function ReviewsList({ reviews, locations }) {
 

@@ -33,9 +33,6 @@ function Locations({ locations, reviews, location, user }) {
           .then(newReview => {
             console.log(newReview)
           })
-        // console.log(text, user.id, id);
-        // make post with above values
-        //  to /reviews POST
       },
       showCancelButton: true
     })
@@ -43,20 +40,30 @@ function Locations({ locations, reviews, location, user }) {
     if (text) {
       Swal.fire(text)
     }
-    // console.log(id)
-    // 
   }
 
+  function editReview(e) {
+    console.log(e.target)
+    fetch(`http://localhost:9292/reviews/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify()
+    })
+      .then(res => res.json())
+      .then(review => console.log(review))
+  }
 
   function handleDelete(e) {
-      e.target.remove()
+    e.target.remove()
     console.log(id)
     fetch(`http://localhost:9292/reviews/6`, {
       method: 'DELETE',
     })
   }
-console.log(reviews)
-  const filteredReviews = reviews.filter(review =>{
+  // console.log(reviews)
+  const filteredReviews = reviews.filter(review => {
 
     return review !== undefined
   })
@@ -79,8 +86,10 @@ console.log(reviews)
     <li className="card">
       <h2 className="name">{location_name}</h2>
 
-      <img onClick={()=>setText(!text)}src={image_Url} alt={location_name} />
-      <h3 className="address"> {text ? "Located at:" + address : desc[id-1].map(d=><div onClick={(e)=>handleDelete(e)}>{d+"\n"}</div>)}</h3>
+      <img onClick={() => setText(!text)} src={image_Url} alt={location_name} />
+      <h3 className="address"> {text ? "Located at:" + address : desc[id - 1].map(d => <div onClick={(e) => handleDelete(e)}>{d + "\n"}</div>)}</h3>
+
+      {text ? null : (<button> Edit Review </button>)}
 
       <h4 className="category">{text ? "Category: " + category : ""}</h4>
       <button onClick={handleClick}>Add Review</button>
