@@ -31,7 +31,7 @@ function LoginForm({ user, setUser }) {
         <h2>Log In</h2>
         <input type="text" name="name" label="Username" placeholder="Username" />
         <input type="text" name="pass" label="Password" placeholder="Password" />
-        <button>Submit</button>
+        <button className="btn btn-outline-dark">Submit</button>
       </form>}
     </div>
   )

@@ -31,16 +31,23 @@ function AddLocationForm({ locations }) {
   }
 
   return (
-    <>
+    <div className="form-floating mb-3">
       <form onSubmit={handleLocationSubmit}>
         <h2>Add A New Location</h2>
-        <input type="text" name="name" placeholder="Location Name" value={locationName} onChange={(e) => setLocationName(e.target.value)} />
-        <input type="text" name="address" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <input type="text" name="image" placeholder="Image URL" value={image} onChange={(e) => setImage(e.target.value)} />
-        <input type="text" name="category" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
-        <button>Submit</button>
+        <label for="floatingInput">Location Name</label>
+        <input className="form-control" type="text" name="name" placeholder="Location Name" value={locationName} onChange={(e) => setLocationName(e.target.value)} />
+
+        <label for="floatingInput">Address</label>
+        <input className="form-control" type="text" name="address" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+
+        <label for="floatingInput">Image URL</label>
+        <input className="form-control" type="text" name="image" placeholder="Image URL" value={image} onChange={(e) => setImage(e.target.value)} />
+
+        <label for="floatingInput">Category</label>
+        <input className="form-control" type="text" name="category" placeholder="Restaurant, Attraction, Venue, etc." value={category} onChange={(e) => setCategory(e.target.value)} />
+        <button className="btn btn-outline-dark">Submit</button>
       </form>
-    </>
+    </div>
   )
 }
 

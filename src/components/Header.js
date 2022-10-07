@@ -2,7 +2,7 @@ function Header() {
   return (
     <div>
       <h1>
-        Rendez Re-vous
+        Rendez Review
       </h1>
     </div>
   )

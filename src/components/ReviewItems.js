@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2'
 import { useState, useEffect } from 'react'
+
 function ReviewItems({ id, user }) {
   const [reviews, setReviews] = useState([])
 
@@ -63,7 +64,7 @@ function ReviewItems({ id, user }) {
         <div style={{ border: "1px solid red" }}>
           <h1 key={review.id}>{review.description}</h1>
           <button onClick={() => editReview(review.id)}>EDIT</button>
-          <button onClick={() => handleDelete(review.id)}>X</button>
+          <button onClick={() => handleDelete(review.id)}>🗑️</button>
         </div>
       ))}
     </>
