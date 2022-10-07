@@ -45,8 +45,10 @@ function ReviewItems({ id, user }) {
     }
   }
 
-  function handleDelete(id) {
-    fetch(`http://localhost:9292/reviews/${id}`, {
+
+
+  function handleDeleteClick(reviewId) {
+    fetch(`http://localhost:9292/reviews/${reviewId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -54,15 +56,19 @@ function ReviewItems({ id, user }) {
     })
       .then(res => res.json())
       .then(deletedReview => {
-        console.log(deletedReview)
+        let filteredArray = reviews.filter(review => review.id !== deletedReview.id)
+        setReviews(filteredArray)
       })
+
   }
+
+
 
   return (
     <>
       {reviews.map(review => (
         <div className="review-item">
-          <li key={review.id}>{review.description}</li> <button onClick={() => editReview(review.id)}>EDIT</button> <button onClick={() => handleDelete(review.id)}>X</button>
+          <li key={review.id}>{review.description}</li> <button onClick={() => editReview(review.id)}>EDIT</button> <button onClick={() => handleDeleteClick(review.id)}>X</button>
         </div>
       ))}
     </>
