@@ -9,6 +9,7 @@ import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
+import UserSignUpForm from "./components/UserSignUpForm";
 
 function App() {
 
@@ -78,6 +79,7 @@ function App() {
               {/* <LocationsList locations={locations} reviews={reviews}/> */}
             </Route>
             <Route exact path="/users">
+              <UserSignUpForm users={user}/>
             </Route>
           </Switch>
         </div>

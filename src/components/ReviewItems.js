@@ -12,7 +12,7 @@ function ReviewItems({ id, user }) {
         })
     }
   }, [])
-
+console.log(reviews)
   function editReview(reviewId) {
     const { value: text } = Swal.fire({
       input: 'textarea',
@@ -43,6 +43,7 @@ function ReviewItems({ id, user }) {
       Swal.fire(text)
     }
   }
+  
   return (
     <>
       {reviews.map(review => (
