@@ -8,6 +8,7 @@ function Locations({ locations, reviews, location, user }) {
   const { location_name, address, image_Url, category, id } = location
   const [showReviews, setShowReviews] = useState(false)
 
+
   function handleClick(e) {
     // alert(`location id is ${id} and user id is ${user.id}`)
     const { value: text } = Swal.fire({
@@ -43,6 +44,12 @@ function Locations({ locations, reviews, location, user }) {
     }
   }
 
+
+
+  // let newReviewsArray = showReviews.filter(el => el.id !== id)
+  // setShowReviews(newReviewsArray)
+
+
   return (
     <div className="card mb-3">
       <h2 className="card-title">{location_name}</h2>
@@ -55,8 +62,6 @@ function Locations({ locations, reviews, location, user }) {
             <h3 className="card-text"> {address} </h3>
             <h4 className="card-text">{category}</h4>
           </>
-
-
         }
 
         {/* <button onClick={(e) => handleDelete(e.currentTarget)}>X</button> */}
