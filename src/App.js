@@ -1,8 +1,7 @@
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css';
@@ -10,6 +9,8 @@ import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
 import AddLocationForm from './components/AddLocationForm'
+import UserSignUpForm from './components/UserSignUpForm'
+import Navbar from "./components/Navbar"
 
 function App() {
 
@@ -30,32 +31,19 @@ function App() {
     <>
       <Router>
         <Header />
+        <Navbar />
         <LoginForm setUser={setUser} user={user} />
-        <AddLocationForm locations={locations} />
 
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/reviews">Reviews</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <LocationsList user={user} reviews={reviews} locations={locations} />
-
-
           <Switch>
             <Route exact path="/">
-              {/* <LocationsList locations={locations} reviews={reviews}/> */}
+              <LocationsList user={user} reviews={reviews} locations={locations} />
             </Route>
             <Route exact path="/users">
+              <UserSignUpForm users={user} />
+            </Route>
+            <Route exact path="/locations">
+              <AddLocationForm locations={locations} />
             </Route>
           </Switch>
         </div>

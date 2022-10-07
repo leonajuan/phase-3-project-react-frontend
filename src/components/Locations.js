@@ -44,25 +44,26 @@ function Locations({ locations, reviews, location, user }) {
   }
 
   return (
-    <li className="card">
-      <h2 className="name">{location_name}</h2>
+    <div className="card mb-3">
+      <h2 className="card-title">{location_name}</h2>
+      <img className="card-img-top" onClick={() => setShowReviews(!showReviews)} src={image_Url} alt={location_name} />
+      <div className="card-body">
+        {showReviews ?
+          <ReviewItems user={user} id={id} />
+          :
+          <>
+            <h3 className="card-text"> {address} </h3>
+            <h4 className="card-text">{category}</h4>
+          </>
 
-      <img onClick={() => setShowReviews(!showReviews)} src={image_Url} alt={location_name} />
 
-      {showReviews ?
-        <ReviewItems user={user} id={id} />
-        :
-        <>
-          <h3 className="address"> {address} </h3>
-          <h4 className="category">{category}</h4>
-        </>
+        }
 
-      }
+        {/* <button onClick={(e) => handleDelete(e.currentTarget)}>X</button> */}
 
-      {/* <button onClick={(e) => handleDelete(e.currentTarget)}>X</button> */}
-
-      <button onClick={handleClick}>Add Review</button>
-    </li>
+        <button onClick={handleClick}>Add Review</button>
+      </div>
+    </div>
   )
 }
 

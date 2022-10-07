@@ -64,7 +64,7 @@ function ReviewItems({ id, user }) {
         <div style={{ border: "1px solid red" }}>
           <h1 key={review.id}>{review.description}</h1>
           <button onClick={() => editReview(review.id)}>EDIT</button>
-          <button onClick={() => handleDelete(review.id)}>🗑️</button>
+          <button onClick={() => handleDelete(review.id)}>X</button>
         </div>
       ))}
     </>

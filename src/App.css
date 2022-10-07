@@ -21,3 +21,11 @@
 .card h2 {
   text-transform: uppercase;
 }
+
+#nav-item-1, #nav-item-2, #nav-item-3 {
+  display: inline-block;
+  justify-content: center;
+  padding: 5px;
+  color: white;
+  margin: auto;
+}
