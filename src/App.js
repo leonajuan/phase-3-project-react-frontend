@@ -9,6 +9,7 @@ import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
+import AddLocationForm from './components/AddLocationForm'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Router>
         <Header />
         <LoginForm setUser={setUser} user={user} />
+        <AddLocationForm locations={locations} />
 
         <div>
           <nav>
