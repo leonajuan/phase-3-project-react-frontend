@@ -4,14 +4,14 @@ import Locations from './Locations'
 
 // function LocationsList({ locations }) {
 function LocationsList({ locations, user, reviews }) {
-  // console.log(reviews)
-  const locationComponents = locations.map(location => {
-    return <Locations user={user} key={location.id} location={location} locations={locations} reviews={reviews} />
-  })
+  // console.log(reviews)=
 
   return (
     <main className="cards">
-      {locationComponents}
+      {locations.map(location => (
+        <Locations user={user} key={location.id} location={location} locations={locations} reviews={reviews} />
+      ))}
+
     </main>
   )
 }

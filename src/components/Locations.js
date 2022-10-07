@@ -43,49 +43,7 @@ function Locations({ locations, reviews, location, user }) {
     }
   }
 
-  function editReview(e) {
-    console.log(id)
-    const { value: text } = Swal.fire({
-      input: 'textarea',
-      inputLabel: `Edit Review for ${location_name}`,
-      inputPlaceholder: 'Edit your review here...',
-      inputAttributes: {
-        'aria-label': 'Type your message here'
-      },
-      preConfirm: (text) => {
-        fetch(`http://localhost:9292/reviews${id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            id: reviews.id,
-            user_id: user.id,
-            location_id: location.id,
-            description: text
-          }),
-        })
-          .then(res => res.json())
-          .then(updatedReview => {
-            console.log(updatedReview)
-          })
-      },
-      showCancelButton: true
-    })
-    if (text) {
-      Swal.fire(text)
-    }
-  }
-  // fetch(`http://localhost:9292/reviews/${id}`, {
-  //   method: 'PATCH',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify()
-  // })
-  //   .then(res => res.json())
-  //   .then(review => console.log(review))
-  // }
+
 
   function handleDelete(e) {
     e.target.remove()
@@ -96,8 +54,6 @@ function Locations({ locations, reviews, location, user }) {
   }
 
 
-  // console.log(allReviewsForLocations)
-  //  console.log(desc)
 
   return (
     <li className="card">
@@ -106,19 +62,16 @@ function Locations({ locations, reviews, location, user }) {
       <img onClick={() => setShowReviews(!showReviews)} src={image_Url} alt={location_name} />
 
       {showReviews ?
-        <ReviewItems id={id} />
+        <ReviewItems user={user} id={id} />
         :
         <>
-          <h4 className="category">category</h4>
-          <h3 className="address"> address </h3>
+          <h3 className="address"> {address} </h3>
+          <h4 className="category">{category}</h4>
         </>
 
       }
 
-
-
-
-      <button onClick={(e) => handleDelete(e.currentTarget)}>X</button>
+      {/* <button onClick={(e) => handleDelete(e.currentTarget)}>X</button> */}
 
       <button onClick={handleClick}>Add Review</button>
     </li>
