@@ -28,6 +28,27 @@ function App() {
   }, [])
 
 
+
+  useEffect(() => {
+    fetch("http://localhost:9292/reviews")
+      .then(res => res.json())
+      .then(reviewsData => {
+        setReviews(reviewsData)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/users")
+      .then(res => res.json())
+      .then(usersData => {
+        setUser(usersData)
+      })
+  }, [])
+
+  
+  
+
+
   return (
     <>
       <Router>
@@ -48,7 +69,9 @@ function App() {
               </li>
             </ul>
           </nav>
+
           <LocationsList user={user} reviews={reviews} locations={locations} />
+
 
           <Switch>
             <Route exact path="/">
