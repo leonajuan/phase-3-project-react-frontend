@@ -43,12 +43,27 @@ function ReviewItems({ id, user }) {
       Swal.fire(text)
     }
   }
+
+  function handleDelete(id) {
+    fetch(`http://localhost:9292/reviews/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => res.json())
+      .then(deletedReview => {
+        console.log(deletedReview)
+      })
+  }
+
   return (
     <>
       {reviews.map(review => (
         <div style={{ border: "1px solid red" }}>
           <h1 key={review.id}>{review.description}</h1>
           <button onClick={() => editReview(review.id)}>EDIT</button>
+          <button onClick={() => handleDelete(review.id)}>X</button>
         </div>
       ))}
     </>

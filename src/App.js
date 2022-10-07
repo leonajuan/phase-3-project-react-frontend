@@ -16,8 +16,6 @@ function App() {
   const [user, setUser] = useState({})
 
   const [reviews, setReviews] = useState([])
-  // const [filteredReviews, setFilteredReviews] =
-
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -26,28 +24,6 @@ function App() {
         setLocations(locationsData)
       })
   }, [])
-
-
-
-  useEffect(() => {
-    fetch("http://localhost:9292/reviews")
-      .then(res => res.json())
-      .then(reviewsData => {
-        setReviews(reviewsData)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch("http://localhost:9292/users")
-      .then(res => res.json())
-      .then(usersData => {
-        setUser(usersData)
-      })
-  }, [])
-
-  
-  
-
 
   return (
     <>
