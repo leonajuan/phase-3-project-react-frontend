@@ -61,10 +61,8 @@ function ReviewItems({ id, user }) {
   return (
     <>
       {reviews.map(review => (
-        <div style={{ border: "1px solid red" }}>
-          <h1 key={review.id}>{review.description}</h1>
-          <button onClick={() => editReview(review.id)}>EDIT</button>
-          <button onClick={() => handleDelete(review.id)}>X</button>
+        <div className="review-item">
+          <li key={review.id}>{review.description}</li> <button onClick={() => editReview(review.id)}>EDIT</button> <button onClick={() => handleDelete(review.id)}>X</button>
         </div>
       ))}
     </>

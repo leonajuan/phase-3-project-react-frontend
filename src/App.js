@@ -32,11 +32,11 @@ function App() {
       <Router>
         <Header />
         <Navbar />
-        <LoginForm setUser={setUser} user={user} />
 
         <div>
           <Switch>
             <Route exact path="/">
+              <LoginForm setUser={setUser} user={user} />
               <LocationsList user={user} reviews={reviews} locations={locations} />
             </Route>
             <Route exact path="/users">

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-dark bg-dark" id="navbar">
-      <div className="hstack gap-3">
+    <nav>
+      <div id="navbar">
         <ul>
           <li className="nav-link" id="nav-item-1">
             <Link to="/">Home</Link>

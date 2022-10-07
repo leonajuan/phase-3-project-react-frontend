@@ -23,7 +23,9 @@ function UserSignUpForm({ users }) {
     }
   }
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className="new-user-sign-up" onSubmit={(e) => handleSubmit(e)}>
+      <h2 className="new-user-header">Sign Up</h2>
+      <br></br>
       <div class="form-outline mb-4">
         <input type="text" id="form1" name="username" class="form-control" />
         <label class="form-label" for="form1">Username</label>

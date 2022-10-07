@@ -31,9 +31,9 @@ function AddLocationForm({ locations }) {
   }
 
   return (
-    <div className="form-floating mb-3">
+    <div className="form-floating mb-3" id="new-location-form">
       <form onSubmit={handleLocationSubmit}>
-        <h2>Add A New Location</h2>
+        <h2 className="new-location-header">Add A New Location</h2>
         <label for="floatingInput">Location Name</label>
         <input className="form-control" type="text" name="name" placeholder="Location Name" value={locationName} onChange={(e) => setLocationName(e.target.value)} />
 
@@ -45,6 +45,7 @@ function AddLocationForm({ locations }) {
 
         <label for="floatingInput">Category</label>
         <input className="form-control" type="text" name="category" placeholder="Restaurant, Attraction, Venue, etc." value={category} onChange={(e) => setCategory(e.target.value)} />
+        <br></br>
         <button className="btn btn-outline-dark">Submit</button>
       </form>
     </div>
