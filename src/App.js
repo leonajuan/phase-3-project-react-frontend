@@ -1,28 +1,23 @@
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './App.css';
 import Header from './components/Header';
 import LocationsList from './components/LocationsList'
 import LoginForm from './components/LoginForm'
-
-
+import AddLocationForm from './components/AddLocationForm'
+import UserSignUpForm from './components/UserSignUpForm'
+import Navbar from "./components/Navbar"
 
 function App() {
 
   const [locations, setLocations] = useState([])
-  const [user, setUser] = useState([]
-    // { id: 1 }
-  )
-  const [reviews, setReviews] = useState([])
-  // const [filteredReviews, setFilteredReviews] =
+  const [user, setUser] = useState({})
 
-  const [userId, setUserId] = useState(0)
-  function setId(id) { setUserId(id) }
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/locations")
@@ -32,43 +27,23 @@ function App() {
       })
   }, [])
 
-
-  useEffect(() => {
-    fetch("http://localhost:9292/users")
-      .then(res => res.json())
-      .then(usersData => {
-        setUser(usersData)
-      })
-  }, [])
-
-
   return (
     <>
       <Router>
         <Header />
-        <LoginForm user={user} userId={userId} setId={setId} />
+        <Navbar />
 
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/reviews">Reviews</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
-          <LocationsList user={user} reviews={reviews} locations={locations} />
-
           <Switch>
             <Route exact path="/">
-              {/* <LocationsList locations={locations} reviews={reviews}/> */}
+              <LoginForm setUser={setUser} user={user} />
+              <LocationsList user={user} reviews={reviews} locations={locations} />
             </Route>
             <Route exact path="/users">
+              <UserSignUpForm users={user} />
+            </Route>
+            <Route exact path="/locations">
+              <AddLocationForm locations={locations} />
             </Route>
           </Switch>
         </div>
